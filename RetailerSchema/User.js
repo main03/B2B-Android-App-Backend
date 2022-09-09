@@ -1,9 +1,30 @@
 const mongooose=require('mongoose');
 
 const userschema=new mongooose.Schema({
-    name:String,
-    email:String,
-    password:String,
+    First_name: {
+        type: String,
+        unique:true,
+        required: true,
+      
+      },
+      Last_name: {
+        type: String,
+        unique:true,
+        required: true,
+      
+      },
+      phone_no: {
+        type: Number,
+        unique:true,
+        required: true,
+      
+      },
+      password: {
+        type: String,
+        unique:true,
+        required: true,
+      
+      },
     
 });
 

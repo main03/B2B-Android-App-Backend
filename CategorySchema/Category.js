@@ -14,6 +14,12 @@ const categoryschema= new mongooose.Schema({
         ref:'Admin',
         required: true
       },
+      CategoryImage:{
+        type:String,
+        required: true,
+        
+        
+      },
      
 },
 { timestamps: true });

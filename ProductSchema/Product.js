@@ -12,26 +12,37 @@ const productschema= new mongooose.Schema({
          
     price: {
         type: Number,
-        required: true
+        required: true,
       },
          
     brand_name: {
         type: String,
-        required: true
+        required: true,
+      },
+      product_quantity: {
+        type: Number,
+        required: true,
       },
     
     
     AdminId:{
         type: Schema.Types.ObjectId,
         ref:'Admin',
-        required: true
+        required: true,
       },
     CategoryId:{
         type: Schema.Types.ObjectId,
         ref:'categories',
-        required: true
+        required: true,
 
-    }
+    },
+    ProductImage:{
+      type:String,
+      required: true,
+      
+      
+    },
+
      
 },
 { timestamps: true });
