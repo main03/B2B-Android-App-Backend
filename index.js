@@ -62,8 +62,4 @@ app.post("/upcomingoffers",AuthenticateAdmin,upload.single('OfferImage'),Upcomin
 // res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 // next();
 //multer storage
-
-
-
-
 app.listen(5000);
