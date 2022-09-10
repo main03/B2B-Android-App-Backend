@@ -4,7 +4,7 @@ const mongooose = require("mongoose");
 mongooose.connect(
   "mongodb://Sheharyar:a@ac-icn4hca-shard-00-00.mvnan7c.mongodb.net:27017,ac-icn4hca-shard-00-01.mvnan7c.mongodb.net:27017,ac-icn4hca-shard-00-02.mvnan7c.mongodb.net:27017/?ssl=true&replicaSet=atlas-zzfoll-shard-0&authSource=admin&retryWrites=true&w=majority"
 );
-const PORT = 5000;
+const port = 5000;
 const AuthenticateAdmin = require("./Middleware/Auth-Admin");
 const authenticateRetailer = require("./Middleware/UserAuth");
 const app = express();
@@ -96,5 +96,6 @@ app.get("/upcomingoffers", UpcomingOfferController.getOffer);
 
 
 //app.post("/retailer", RetailerController.CreateRetailer);
-console.log(`Server is running on ${PORT} PORT....`);
-app.listen(PORT);
+// console.log(`Server is running on ${PORT} PORT....`);
+// app.listen(PORT);
+app.listen(process.env.PORT || port, () => console.log(`Server running at http://localhost:${port}`));
