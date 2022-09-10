@@ -13,7 +13,7 @@ const userschema=new mongooose.Schema({
         required: true,
       
       },
-      phone_no: {
+      Phone_no: {
         type: Number,
         unique:true,
         required: true,

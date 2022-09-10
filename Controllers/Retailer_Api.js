@@ -1,30 +1,17 @@
-const express=require("express");
+const User = require("../Models/Retailer");
 
-const cors=require("cors");
-
-
-const User=require('../RetailerSchema/User')
-
-// const cookieparser=require('cookie-parser');
-const AuthenticateAdmin=require('../Middleware/Auth-Admin')
-const app=express();
-app.use(express.json());
 
 
 //SignuForm or Retailer EndPoint
-app.post("/register",async (req,resp)=>
-{
-   console.log(req.body);
-    let user =new User(req.body);
-    let result=await user.save();
-    resp.send(result);
-  
-   
-   
-})
+exports.CreateRetailer =( async (req, resp) => {
+  console.log(req.body);
+  let user = new User(req.body);
+  let result = await user.save();
+  resp.send(result);
+});
 
 //loginform EndPoint
-app.post("/Login", async (req, res) => {
+exports.RetailerLogin =( async (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
   const user = await User.findOne({ email: email });
@@ -43,4 +30,3 @@ app.post("/Login", async (req, res) => {
     }
   });
 });
-

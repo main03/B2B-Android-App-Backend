@@ -17,7 +17,7 @@ module.exports = (req, res, next) => {
     console.log(decodedToken);
     
     
-      // return res.redirect("/");
+    
     
   } catch (err) {
   
