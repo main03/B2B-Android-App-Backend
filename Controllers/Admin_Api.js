@@ -1,9 +1,10 @@
 const bcrypt = require("bcrypt");
 const Admin = require("../Models/Admin");
+const AuthenticateAdmin = require("../Middleware/Auth-Admin");
 
 const jwt = require("jsonwebtoken");
 
-exports.AdminVerify = async (req, res, next) => {
+exports.AdminVerify = (async (req, res, next) => {
   const name = req.body.name;
   const password = req.body.password;
   const admin = await Admin.findOne({ name: name });
@@ -29,20 +30,20 @@ exports.AdminVerify = async (req, res, next) => {
     console.log("Name NOT FOUND OR PASSWORD NOT MATCHED ");
     res.send("Not found");
   }
-};
-exports.GetallAdmin =
-  (
-  async (req, res, next) => {
-    Admin.find()
-      .then((result) => {
-        res.status(200).json({
-          Admindata: result,
-        });
-      })
-      .catch((err) => {
-        res.status(500).json({
-          error: err,
-        });
-      });
-  });
+});
+// exports.GetallAdmin =
+//   (
+//   async (req, res, next) => {
+//     Admin.find()
+//       .then((result) => {
+//         res.status(200).json({
+//           Admindata: result,
+//         });
+//       })
+//       .catch((err) => {
+//         res.status(500).json({
+//           error: err,
+//         });
+//       });
+//   });
 
