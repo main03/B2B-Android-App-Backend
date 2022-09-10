@@ -4,18 +4,20 @@ const Schema = mongoose.Schema;
 const orderschema = new mongoose.Schema(
   {
     OrderTotal: {
-      type: String,
+      type: Number,
       required: true,
     },
     OrderStatus: {
       type: String,
       required: true,
     },
-   
+    Order_Quantity: {
+      type: Number,
+      required: true,
+    },
     ProductId: {
       type: Array,
       default: undefined,
-      // default:Schema.Types.ObjectId,
       ref: "products",
       required: true,
     },
@@ -23,6 +25,10 @@ const orderschema = new mongoose.Schema(
       type: Schema.Types.ObjectId,
       ref: "users",
       required: true,
+    },
+    OfferId: {
+      type: Schema.Types.ObjectId,
+      ref: "UpcomingOffer",
     },
   },
   { timestamps: true }

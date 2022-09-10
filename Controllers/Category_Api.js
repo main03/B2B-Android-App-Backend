@@ -32,7 +32,8 @@ exports.CreateNewCategory =
 exports.GetallCategoryList =
   (AuthenticateAdmin,
   async (req, res, next) => {
-    Category.find().populate("AdminId", "name")
+    Category.find()
+      .populate("AdminId", "name")
       .then((result) => {
         res.status(200).json({
           categorydata: result,
@@ -76,3 +77,16 @@ exports.DeleteCategory =
       res.status(500).send(e);
     }
   });
+exports.getCategory = async (req, res, next) => {
+  Category.find()
+    .then((result) => {
+      res.status(200).json({
+        categoryData: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
+      });
+    });
+};

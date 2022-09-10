@@ -36,13 +36,15 @@ exports.CreateNewProduct =
         console.log(err);
       });
   });
-  // .populate([{path:"CategoryId", select:["category_name","CategoryImage"]},{path:"AdminId",select:"name"}])
+// .populate([{path:"CategoryId", select:["category_name","CategoryImage"]},{path:"AdminId",select:"name"}])
 exports.GetAllProductList =
   (AuthenticateAdmin,
   async (req, res, next) => {
     Product.find()
-    .populate([{path:"CategoryId", select:["category_name","CategoryImage"]},{path:"AdminId",select:"name"}])
-    
+      .populate([
+        { path: "CategoryId", select: ["category_name", "CategoryImage"] },
+        { path: "AdminId", select: "name" },
+      ])
 
       .then((result) => {
         res.status(200).json({
@@ -92,3 +94,21 @@ exports.DeleteProduct =
       res.status(500).send(e);
     }
   });
+exports.getProduct = async (req, res, next) => {
+  let filter = {};
+  if (req.query.CategoryId) {
+    filter = { CategoryId: req.query.CategoryId };
+  }
+  Product.find(filter)
+    .populate("CategoryId")
+    .then((result) => {
+      res.status(200).json({
+        productData: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
+      });
+    });
+};

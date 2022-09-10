@@ -1,33 +1,29 @@
-const mongooose=require('mongoose');
-
-const userschema=new mongooose.Schema({
-    First_name: {
-        type: String,
-        unique:true,
-        required: true,
-      
-      },
-      Last_name: {
-        type: String,
-        unique:true,
-        required: true,
-      
-      },
-      Phone_no: {
-        type: Number,
-        unique:true,
-        required: true,
-      
-      },
-      password: {
-        type: String,
-        unique:true,
-        required: true,
-      
-      },
-    
-});
-
-module.exports=mongooose.model("users",userschema);
-
-//dates binary date for bsoon data types
+const { default: mongoose } = require("mongoose");
+const mongooose = require("mongoose");
+const Schema = mongoose.Schema;
+const userschema = new mongoose.Schema(
+  {
+    FirstName: {
+      type: String,
+      required: true,
+    },
+    LastName: {
+      type: String,
+      required: true,
+    },
+    Phone_no: {
+      type: Number,
+      required: true,
+    },
+    password: {
+      type: String,
+      required: true,
+    },
+    RegionId: {
+      type: Schema.Types.ObjectId,
+      ref: "regions",
+    },
+  },
+  { timestamps: true }
+);
+module.exports = mongooose.model("users", userschema);

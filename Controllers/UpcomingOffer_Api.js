@@ -1,7 +1,6 @@
 const UpcomingOffer = require("../Models/UpcomingOffers");
 const AuthenticateAdmin = require("../Middleware/Auth-Admin");
 
-
 exports.CreateUpcomingOffer =
   (AuthenticateAdmin,
   (req, resp, next) => {
@@ -33,3 +32,18 @@ exports.CreateUpcomingOffer =
       });
     //  resp.send(result);
   });
+exports.getOffer = async (req, res, next) => {
+  UpcomingOffer.find()
+    .populate("BuyItem")
+    .populate("GetItem")
+    .then((result) => {
+      res.status(200).json({
+        offerCreate: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500).json({
+        error: err,
+      });
+    });
+};

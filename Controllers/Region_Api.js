@@ -5,7 +5,8 @@ const AuthenticateAdmin = require("../Middleware/Auth-Admin");
 exports.GetallRegionList =
   (AuthenticateAdmin,
   async (req, res, next) => {
-    Region.find().populate("AdminId", "name")
+    Region.find()
+      .populate("AdminId", "name")
       .then((result) => {
         res.status(200).json({
           regiondata: result,
@@ -75,3 +76,14 @@ exports.PostRegion =
       });
     //  resp.send(result);
   });
+exports.getRegion = async (req, res, next) => {
+  Region.find()
+    .then((result) => {
+      res.status(200).json({
+        regiondata: result,
+      });
+    })
+    .catch((err) => {
+      res.status(500);
+    });
+};
