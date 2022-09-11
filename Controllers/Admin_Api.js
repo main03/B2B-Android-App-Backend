@@ -20,7 +20,7 @@ exports.AdminVerify = (async (req, res, next) => {
     const token = await jwt.sign(
       { _id: "6300af4997dcffe28b32da99" },
       "Helloiamadmin",
-      { expiresIn: "57m" }
+      { expiresIn: "24h" }
     );
     console.log(token);
 

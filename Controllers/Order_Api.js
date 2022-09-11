@@ -11,6 +11,7 @@ exports.GetAllOrderList =
     // ,{path:"ProductId.Object", select:["ProductImage"]}
     Order.find()
       .populate([{ path: "UserId", select: ["FirstName", "LastName"] }])
+      .populate([{ path: "ProductId.Object", select: ["ProductImage"] }])
 
       .then((result) => {
         res.status(200).json({

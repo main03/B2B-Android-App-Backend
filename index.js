@@ -1,28 +1,29 @@
 const express = require("express");
 const cors = require("cors");
+const path=require('path');
 const mongooose = require("mongoose");
 mongooose.connect(
   "mongodb://Sheharyar:a@ac-icn4hca-shard-00-00.mvnan7c.mongodb.net:27017,ac-icn4hca-shard-00-01.mvnan7c.mongodb.net:27017,ac-icn4hca-shard-00-02.mvnan7c.mongodb.net:27017/?ssl=true&replicaSet=atlas-zzfoll-shard-0&authSource=admin&retryWrites=true&w=majority"
 );
 const port = 5000;
-const AuthenticateAdmin = require("./Middleware/Auth-Admin");
-const authenticateRetailer = require("./Middleware/UserAuth");
 const app = express();
 const bodyparser = require("body-parser");
+app.use(bodyparser.json());
+app.use(cors());
+app.use("/uploads", express.static("uploads"));
 
+const AuthenticateAdmin = require("./Middleware/Auth-Admin");
+const authenticateRetailer = require("./Middleware/UserAuth");
 const AdminController = require("./Controllers/Admin_Api");
 const RegionController = require("./Controllers/Region_Api");
 const CategoryController = require("./Controllers/Category_Api");
 const ProductController = require("./Controllers/Product_Api");
 const OrderController = require("./Controllers/Order_Api");
 const RetailerController = require("./Controllers/Retailer_Api");
-
 const upload = require("./Middleware/ImageUpload");
-
 const UpcomingOfferController = require("./Controllers/UpcomingOffer_Api");
-app.use(bodyparser.json());
-app.use(cors());
-app.use("/uploads", express.static("uploads"));
+
+
 // --------------------------------------------------------------------------------------
 //Admin Route
 app.post("/AdminAuthenticate", AdminController.AdminVerify);
@@ -71,7 +72,7 @@ UpcomingOfferController.CreateUpcomingOffer
 
 
 // ========================================================================================
-
+//Maaz Routes
 //Retailer Routes
 app.post("/retailer", RetailerController.addRetailer);
 app.post("/Login", RetailerController.retailerLogin);
