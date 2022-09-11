@@ -4,15 +4,15 @@ const authenticateRetailer = require("../Middleware/UserAuth");
 // .populate("ProductId.Object")
 // yeh kam kr rha h
 // .populate("UserId", "FirstName")
+// .populate([{ path: "UserId", select: ["FirstName", "LastName"] }])
 exports.GetAllOrderList =
   (AuthenticateAdmin,
   async (req, res, next) => {
-    // ,{path:"AdminId",select:"name"}
-    // ,{path:"ProductId.Object", select:["ProductImage"]}
+   
     Order.find()
-      .populate([{ path: "UserId", select: ["FirstName", "LastName"] }])
-      .populate([{ path: "ProductId.Object", select: ["ProductImage"] }])
-
+    // .populate("UserId")
+     
+     
       .then((result) => {
         res.status(200).json({
           Orderdata: result,

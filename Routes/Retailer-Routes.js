@@ -11,7 +11,6 @@ app.post("/retailer", RetailerController.addRetailer);
 app.post("/Login", RetailerController.retailerLogin);
 app.get("/retailer", authenticateRetailer, RetailerController.getRetailer);
 
-app.get("/region", RegionController.getRegion);
 
 app.get("/category", CategoryController.getCategory);
 
