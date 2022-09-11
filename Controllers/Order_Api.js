@@ -28,7 +28,7 @@ exports.GetAllOrderList =
 exports.UpdateOrders =
   (AuthenticateAdmin,
   (req, res, next) => {
-    Order.findOneAndUpdate(
+    Order.updateOne(
       { _id: req.params.id },
       {
         $set: {
