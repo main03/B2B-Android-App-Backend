@@ -23,15 +23,16 @@ exports.GetAllOrderList =
         res.status(500);
       });
   });
-
+  // updateOne yeh phly use kr rha tha 
+  // findOneAndUpdate
 exports.UpdateOrders =
   (AuthenticateAdmin,
   (req, res, next) => {
-    Order.updateOne(
+    Order.findOneAndUpdate(
       { _id: req.params.id },
       {
         $set: {
-          OrderTotal: req.body.OrderTotal,
+          // OrderTotal: req.body.OrderTotal,
           OrderStatus: req.body.OrderStatus,
         },
       }
