@@ -1,29 +1,27 @@
-const mongooose=require('mongoose');
+const mongooose = require("mongoose");
 const Schema = mongooose.Schema;
 
-const categoryschema= new mongooose.Schema({
-    
+const categoryschema = new mongooose.Schema(
+  {
     category_name: {
-        type: String,
-        unique:true,
-        required: true
-      },
-    
-    AdminId:{
-        type: Schema.Types.ObjectId,
-        ref:'Admin',
-        required: true
-      },
-      CategoryImage:{
-        type:String,
-        required: true,
-        
-        
-      },
-     
-},
-{ timestamps: true });
+      type: String,
+      unique: true,
+      required: true,
+    },
 
-module.exports=mongooose.model("categories",categoryschema);
+    AdminId: {
+      type: Schema.Types.ObjectId,
+      ref: "Admin",
+      required: true,
+    },
+    CategoryImage: {
+      type: String,
+      required: true,
+    },
+  },
+  { timestamps: true }
+);
+
+module.exports = mongooose.model("categories", categoryschema);
 
 //dates binary date for bsoon data types
