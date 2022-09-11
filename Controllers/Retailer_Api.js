@@ -1,7 +1,7 @@
 const User = require("../Models/Retailer");
 const jwt = require("jsonwebtoken");
 const express = require("express");
-const authenticateRetailer = require("../Middleware/UserAuth");
+const AuthenticateAdmin = require("../Middleware/Auth-Admin");
 const app = express();
 const key = "SAM";
 var bcrypt = require("bcryptjs");
@@ -10,7 +10,7 @@ app.use(express.json());
 app.use(cors());
 
 exports.getRetailer =
-  (authenticateRetailer,
+  (AuthenticateAdmin,
   async (req, res, next) => {
     const loginid = req.userId;
     User.findOne({ _id: loginid })

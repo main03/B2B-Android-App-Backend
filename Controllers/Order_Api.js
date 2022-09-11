@@ -46,7 +46,7 @@ exports.UpdateOrders =
       });
   });
 exports.postOrder =
-  (authenticateRetailer,
+  (AuthenticateAdmin,
   async (req, res, next) => {
     const OrderTotal = req.body.OrderTotal;
     const ProductId = req.body.ProductId;
@@ -67,7 +67,7 @@ exports.postOrder =
     res.send(order);
   });
 exports.getOrder =
-  (authenticateRetailer,
+  (AuthenticateAdmin,
   async (req, res, next) => {
     const loginid = req.userId;
     Order.find({ UserId: loginid })
@@ -84,7 +84,7 @@ exports.getOrder =
   });
 
 exports.updateOrder =
-  (authenticateRetailer,
+  (AuthenticateAdmin,
   (req, res, next) => {
     Order.updateOne(
       { _id: req.params.id },
