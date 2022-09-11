@@ -17,7 +17,7 @@ app.use("/uploads", express.static("uploads"));
 app.use("/Admin-Routes", admin);
 app.use("/Retailer-Routes", retailer);
 
-
+//m aik comment kr rha huuuuu
 
 
 
