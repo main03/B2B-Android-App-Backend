@@ -23,6 +23,14 @@ const RetailerController = require("./Controllers/Retailer_Api");
 const upload = require("./Middleware/ImageUpload");
 const UpcomingOfferController = require("./Controllers/UpcomingOffer_Api");
 
+// if (process.env.NODE_ENV === "production") {
+//   app.use(express.static("build"));
+//   app.get("*", (req, res) => {
+//     res.sendFile(path.resolve(__dirname,  "build", "index.html"));
+//   });
+// }
+
+
 
 // --------------------------------------------------------------------------------------
 //Admin Route
