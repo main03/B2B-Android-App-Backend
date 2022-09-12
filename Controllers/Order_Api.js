@@ -8,9 +8,9 @@ const authenticateRetailer = require("../Middleware/UserAuth");
 exports.GetAllOrderList =
   (AuthenticateAdmin,
   async (req, res, next) => {
-   
+    // , "LastName"
     Order.find()
-    // .populate("UserId")
+    .populate([{ path: "UserId", select: ["FirstName", "LastName"] }])
      
      
       .then((result) => {
