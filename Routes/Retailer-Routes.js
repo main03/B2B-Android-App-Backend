@@ -7,11 +7,12 @@ const OrderController = require("../Controllers/Order_Api");
 const RetailerController = require("../Controllers/Retailer_Api");
 const UpcomingOfferController = require("../Controllers/UpcomingOffer_Api");
 const authenticateRetailer = require("../Middleware/UserAuth");
+
 app.post("/retailer", RetailerController.addRetailer);
 app.post("/Login", RetailerController.retailerLogin);
 app.get("/retailer", authenticateRetailer, RetailerController.getRetailer);
 
-
+app.get("/region", RegionController.getRegion);
 app.get("/category", CategoryController.getCategory);
 
 app.get("/product", ProductController.getProduct);
