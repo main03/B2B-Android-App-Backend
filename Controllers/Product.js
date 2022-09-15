@@ -1,8 +1,8 @@
 const Product = require("../Models/Product");
-const AuthenticateAdmin = require("../Middleware/AdminAuth");
+// const AuthenticateAdmin = require("../Middleware/AdminAuth");
 
 exports.CreateNewProduct =
-  (AuthenticateAdmin,
+  (
   async (req, res) => {
     const name = req.body.name;
     const price = req.body.price;
@@ -38,7 +38,7 @@ exports.CreateNewProduct =
   });
 // .populate([{path:"CategoryId", select:["category_name","CategoryImage"]},{path:"AdminId",select:"name"}])
 exports.GetAllProductList =
-  (AuthenticateAdmin,
+  (
   async (req, res, next) => {
     Product.find()
       .populate([
@@ -58,7 +58,7 @@ exports.GetAllProductList =
       });
   });
 exports.UpdateProduct =
-  (AuthenticateAdmin,
+  (
   (req, res, next) => {
     Product.updateOne(
       { _id: req.params.id },
@@ -82,7 +82,7 @@ exports.UpdateProduct =
   });
 
 exports.DeleteProduct =
-  (AuthenticateAdmin,
+  (
   async (req, res) => {
     try {
       const deleteproduct = await Product.findByIdAndDelete(req.params.id);

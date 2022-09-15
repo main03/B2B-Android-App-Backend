@@ -2,7 +2,7 @@ const Category = require("../Models/Category");
 const AuthenticateAdmin = require("../Middleware/AdminAuth");
 
 exports.CreateNewCategory =
-  (AuthenticateAdmin,
+  (
   async (req, resp, next) => {
     // const category_name=req.body.category_name;
     // const refid=req.body.refid;
@@ -29,8 +29,9 @@ exports.CreateNewCategory =
   });
 // category get api
 // .populate("name")
+// AuthenticateAdmin,
 exports.GetallCategoryList =
-  (AuthenticateAdmin,
+  (
   async (req, res, next) => {
     Category.find()
       .populate("AdminId", "name")
@@ -48,7 +49,7 @@ exports.GetallCategoryList =
   });
 // http://localhost:5000/category/6300b7f53141eec64a5fbc68
 exports.UpdateCategory =
-  (AuthenticateAdmin,
+  (
   (req, res, next) => {
     Category.updateOne(
       { _id: req.params.id },
@@ -65,7 +66,7 @@ exports.UpdateCategory =
   });
 
 exports.DeleteCategory =
-  (AuthenticateAdmin,
+  (
   async (req, res) => {
     try {
       const deletecategory = await Category.findByIdAndDelete(req.params.id);

@@ -4,7 +4,7 @@ const authenticateRetailer = require("../Middleware/UserAuth");
 // .populate("ProductId.Object")
 
 exports.GetAllOrderList =
-  (AuthenticateAdmin,
+  (
   async (req, res, next) => {
    
     Order.find()
@@ -24,7 +24,7 @@ exports.GetAllOrderList =
   // updateOne yeh phly use kr rha tha 
   // findOneAndUpdate
 exports.UpdateOrders =
-  (AuthenticateAdmin,
+  (
   (req, res, next) => {
     Order.updateOne(
       { _id: req.params.id },
@@ -45,7 +45,7 @@ exports.UpdateOrders =
       });
   });
 exports.postOrder =
-  (AuthenticateAdmin,
+  (
   async (req, res, next) => {
     const OrderTotal = req.body.OrderTotal;
     const ProductId = req.body.ProductId;
@@ -66,7 +66,7 @@ exports.postOrder =
     res.send(order);
   });
 exports.getOrder =
-  (AuthenticateAdmin,
+  (
   async (req, res, next) => {
     const loginid = req.userId;
     Order.find({ UserId: loginid })
@@ -83,7 +83,7 @@ exports.getOrder =
   });
 
 exports.updateOrder =
-  (authenticateRetailer,
+  (
   (req, res, next) => {
     Order.updateOne(
       { _id: req.params.id },

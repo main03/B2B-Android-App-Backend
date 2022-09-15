@@ -1,9 +1,9 @@
 const Region = require("../Models/Region");
 
-const AuthenticateAdmin = require("../Middleware/AdminAuth");
+// const AuthenticateAdmin = require("../Middleware/AdminAuth");
 
 exports.GetallRegionList =
-  (AuthenticateAdmin,
+  (
   async (req, res, next) => {
     Region.find()
       .populate("AdminId", "name")
@@ -19,7 +19,7 @@ exports.GetallRegionList =
       });
   });
 exports.UpdateRegion =
-  (AuthenticateAdmin,
+  (
   async (req, res, next) => {
     Region.updateOne(
       { _id: req.params.id },
@@ -36,7 +36,7 @@ exports.UpdateRegion =
   });
 
 exports.DeleteRegion =
-  (AuthenticateAdmin,
+  (
   async (req, res) => {
     try {
       const regiondelete = await Region.findByIdAndDelete(req.params.id);
@@ -51,7 +51,7 @@ exports.DeleteRegion =
 
 //region endpoint
 exports.PostRegion =
-  (AuthenticateAdmin,
+  (
   async (req, resp, next) => {
     const region = req.body.region;
     const capital = req.body.capital;

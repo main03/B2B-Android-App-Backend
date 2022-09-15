@@ -2,7 +2,7 @@ const UpcomingOffer = require("../Models/UpcomingOffers");
 const AuthenticateAdmin = require("../Middleware/AdminAuth");
 
 exports.CreateUpcomingOffer =
-  (AuthenticateAdmin,
+  (
   (req, resp, next) => {
    
     // const description=req.body.description;
