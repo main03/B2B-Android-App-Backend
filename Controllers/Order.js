@@ -1,14 +1,12 @@
 const Order = require("../Models/Order");
-const AuthenticateAdmin = require("../Middleware/Auth-Admin");
+const AuthenticateAdmin = require("../Middleware/AdminAuth");
 const authenticateRetailer = require("../Middleware/UserAuth");
 // .populate("ProductId.Object")
-// yeh kam kr rha h
-// .populate("UserId", "FirstName")
-// .populate([{ path: "UserId", select: ["FirstName", "LastName"] }])
+
 exports.GetAllOrderList =
   (AuthenticateAdmin,
   async (req, res, next) => {
-    // , "LastName"
+   
     Order.find()
     .populate([{ path: "UserId", select: ["FirstName", "LastName"] }])
      
@@ -85,7 +83,7 @@ exports.getOrder =
   });
 
 exports.updateOrder =
-  (AuthenticateAdmin,
+  (authenticateRetailer,
   (req, res, next) => {
     Order.updateOne(
       { _id: req.params.id },

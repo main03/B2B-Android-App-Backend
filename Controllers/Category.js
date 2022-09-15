@@ -1,5 +1,5 @@
 const Category = require("../Models/Category");
-const AuthenticateAdmin = require("../Middleware/Auth-Admin");
+const AuthenticateAdmin = require("../Middleware/AdminAuth");
 
 exports.CreateNewCategory =
   (AuthenticateAdmin,

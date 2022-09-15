@@ -1,10 +1,10 @@
 const bcrypt = require("bcrypt");
 const Admin = require("../Models/Admin");
-const AuthenticateAdmin = require("../Middleware/Auth-Admin");
+const AuthenticateAdmin = require("../Middleware/AdminAuth");
 
 const jwt = require("jsonwebtoken");
 
-exports.AdminVerify = (async (req, res, next) => {
+exports.AdminLogin = (async (req, res, next) => {
   const name = req.body.name;
   const password = req.body.password;
   const admin = await Admin.findOne({ name: name });

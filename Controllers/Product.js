@@ -1,5 +1,5 @@
 const Product = require("../Models/Product");
-const AuthenticateAdmin = require("../Middleware/Auth-Admin");
+const AuthenticateAdmin = require("../Middleware/AdminAuth");
 
 exports.CreateNewProduct =
   (AuthenticateAdmin,

@@ -1,10 +1,10 @@
 const UpcomingOffer = require("../Models/UpcomingOffers");
-const AuthenticateAdmin = require("../Middleware/Auth-Admin");
+const AuthenticateAdmin = require("../Middleware/AdminAuth");
 
 exports.CreateUpcomingOffer =
   (AuthenticateAdmin,
   (req, resp, next) => {
-    console.log("Yaha tk call ho ri h");
+   
     // const description=req.body.description;
     const offercreate = new UpcomingOffer({
       description: req.body.description,

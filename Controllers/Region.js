@@ -1,6 +1,6 @@
 const Region = require("../Models/Region");
 
-const AuthenticateAdmin = require("../Middleware/Auth-Admin");
+const AuthenticateAdmin = require("../Middleware/AdminAuth");
 
 exports.GetallRegionList =
   (AuthenticateAdmin,
