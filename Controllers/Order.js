@@ -1,7 +1,5 @@
 const Order = require("../Models/Order");
-const AuthenticateAdmin = require("../Middleware/AdminAuth");
-const authenticateRetailer = require("../Middleware/UserAuth");
-// .populate("ProductId.Object")
+
 
 exports.GetAllOrderList =
   (

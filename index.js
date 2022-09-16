@@ -21,8 +21,6 @@ app.use(bodyparser.json());
 app.use(cors());
 app.use("/uploads", express.static("uploads"));
 
-// app.use("/Admin-Routes", admin);
-// app.use("/Retailer-Routes", retailer);
 
 //new routes
 app.use('/category', categories)
@@ -30,7 +28,7 @@ app.use('/product',products)
 app.use('/order',orders)
 app.use('/upcomingoffers',upcomingoffers)
 app.use('/region',regions)
-app.use('/AdminLogin',admin)
+app.use('/admin',admin)
 app.use('/retailer',retailer)
 
 

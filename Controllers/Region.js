@@ -1,6 +1,6 @@
 const Region = require("../Models/Region");
 
-// const AuthenticateAdmin = require("../Middleware/AdminAuth");
+
 
 exports.GetallRegionList =
   (
@@ -55,13 +55,13 @@ exports.PostRegion =
   async (req, resp, next) => {
     const region = req.body.region;
     const capital = req.body.capital;
-    const refid = req.body.refid;
+    
 
     console.log(req.body);
     const regioncreate = new Region({
       region: region,
       capital: capital,
-      AdminId: req.body.refid,
+      AdminId: req.AdminId,
     });
     regioncreate
       .save()
@@ -76,14 +76,4 @@ exports.PostRegion =
       });
     //  resp.send(result);
   });
-exports.getRegion = async (req, res, next) => {
-  Region.find()
-    .then((result) => {
-      res.status(200).json({
-        regiondata: result,
-      });
-    })
-    .catch((err) => {
-      res.status(500);
-    });
-};
+

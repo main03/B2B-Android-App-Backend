@@ -1,10 +1,11 @@
 const bcrypt = require("bcrypt");
 const Admin = require("../Models/Admin");
-const AuthenticateAdmin = require("../Middleware/AdminAuth");
+// const AuthenticateAdmin = require("../Middleware/AdminAuth");
 
 const jwt = require("jsonwebtoken");
 
 exports.AdminLogin = (async (req, res, next) => {
+ 
   const name = req.body.name;
   const password = req.body.password;
   const admin = await Admin.findOne({ name: name });
@@ -13,37 +14,27 @@ exports.AdminLogin = (async (req, res, next) => {
     res.send("not found");
     return;
   }
+  let loadeduser;
   const ismatch = await bcrypt.compare(password, admin.password);
   if (ismatch) {
+    loadeduser=admin;
     console.log("LOGGED IN SUCCESSFULLY ");
     console.log("JSON WEB-TOKEN OF ADMIN IS :");
     const token = await jwt.sign(
-      { _id: "6300af4997dcffe28b32da99" },
+      { AdminId: loadeduser._id.toString() },
       "Helloiamadmin",
       { expiresIn: "24h" }
+     
     );
+    console.log("Id of admin is :",loadeduser._id.toString() );
     console.log(token);
+  
 
-    res.send({ token: token });
+    res.send({ token: token ,
+      AdminId: loadeduser._id.toString()});
     // res.send({token:token,name:name,password:password});
   } else {
     console.log("Name NOT FOUND OR PASSWORD NOT MATCHED ");
     res.send("Not found");
   }
 });
-// exports.GetallAdmin =
-//   (
-//   async (req, res, next) => {
-//     Admin.find()
-//       .then((result) => {
-//         res.status(200).json({
-//           Admindata: result,
-//         });
-//       })
-//       .catch((err) => {
-//         res.status(500).json({
-//           error: err,
-//         });
-//       });
-//   });
-

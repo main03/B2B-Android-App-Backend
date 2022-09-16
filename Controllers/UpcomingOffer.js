@@ -1,5 +1,5 @@
 const UpcomingOffer = require("../Models/UpcomingOffers");
-const AuthenticateAdmin = require("../Middleware/AdminAuth");
+
 
 exports.CreateUpcomingOffer =
   (
@@ -8,7 +8,7 @@ exports.CreateUpcomingOffer =
     // const description=req.body.description;
     const offercreate = new UpcomingOffer({
       description: req.body.description,
-      AdminId: req.body.refid,
+      AdminId: req.AdminId,
       Expiry_Date: req.body.Expiry_Date,
       BuyQuantity: req.body.BuyQuantity,
       GetQuantity: req.body.GetQuantity,

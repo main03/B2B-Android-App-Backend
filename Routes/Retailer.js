@@ -9,7 +9,5 @@ router.route("/").get(authenticateRetailer,RetailerController.getRetailer);
 
 
 
-// app.post("/retailer", RetailerController.addRetailer);
-// app.post("/Login", RetailerController.retailerLogin);
-// app.get("/retailer", authenticateRetailer, RetailerController.getRetailer);
+
 module.exports = router;

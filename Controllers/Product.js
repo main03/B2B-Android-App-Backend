@@ -1,5 +1,5 @@
 const Product = require("../Models/Product");
-// const AuthenticateAdmin = require("../Middleware/AdminAuth");
+
 
 exports.CreateNewProduct =
   (
@@ -8,7 +8,6 @@ exports.CreateNewProduct =
     const price = req.body.price;
     const brand_name = req.body.brand_name;
     const product_quantity = req.body.product_quantity;
-    const Admin_refid = req.body.Admin_refid;
     const CategoryId = req.body.CategoryId;
     console.log(req.body);
     const productcreate = new Product({
@@ -16,7 +15,7 @@ exports.CreateNewProduct =
       price: price,
       brand_name: brand_name,
       product_quantity: product_quantity,
-      AdminId: Admin_refid,
+      AdminId: req.AdminId,
       CategoryId: CategoryId,
     });
     if (req.file) {

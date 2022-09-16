@@ -1,14 +1,9 @@
 const User = require("../Models/Retailer");
 const jwt = require("jsonwebtoken");
 
-// const AuthenticateAdmin = require("../Middleware/AdminAuth");
-// const authenticateRetailer=require("../Middleware/UserAuth")
-// const app = express();
+
 const key = "SAM";
 var bcrypt = require("bcryptjs");
-// var cors = require("cors");
-// app.use(express.json());
-// app.use(cors());
 
 exports.getRetailer =
   (

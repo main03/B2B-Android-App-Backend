@@ -1,15 +1,17 @@
 const Category = require("../Models/Category");
-const AuthenticateAdmin = require("../Middleware/AdminAuth");
-
+const AdminMiddleware=require('../Middleware/AdminAuth');
 exports.CreateNewCategory =
   (
   async (req, resp, next) => {
-    // const category_name=req.body.category_name;
-    // const refid=req.body.refid;
-    console.log(req.body);
-    const categorycreate = new Category({
-      category_name: req.body.category_name,
-      AdminId: req.body.refid,
+  console.log("sadsaassssssssssssssssssssssss");
+  console.log(req.AdminId);
+  const category_name= req.body.category_name;
+  // const refid=req.body.refid;
+    
+    let categorycreate = new Category({
+     category_name:category_name,
+     AdminId: req.AdminId,
+
     });
     if (req.file) {
       categorycreate.CategoryImage = req.file.path;
@@ -27,9 +29,7 @@ exports.CreateNewCategory =
       });
     //  resp.send(result);
   });
-// category get api
-// .populate("name")
-// AuthenticateAdmin,
+
 exports.GetallCategoryList =
   (
   async (req, res, next) => {
@@ -47,14 +47,20 @@ exports.GetallCategoryList =
         });
       });
   });
-// http://localhost:5000/category/6300b7f53141eec64a5fbc68
+  
 exports.UpdateCategory =
   (
+    // updateOne 
   (req, res, next) => {
-    Category.updateOne(
+    Category.updateOne (
+    
+      
       { _id: req.params.id },
-      { $set: { category_name: req.body.category_name } }
-    )
+      { $set: { category_name: req.body.category_name,CategoryImage:req.file.CategoryImage} },
+      
+       )
+       
+   
       .then((result) => {
         res.status(200).json(result);
       })
@@ -78,16 +84,4 @@ exports.DeleteCategory =
       res.status(500).send(e);
     }
   });
-exports.getCategory = async (req, res, next) => {
-  Category.find()
-    .then((result) => {
-      res.status(200).json({
-        categoryData: result,
-      });
-    })
-    .catch((err) => {
-      res.status(500).json({
-        error: err,
-      });
-    });
-};
+
