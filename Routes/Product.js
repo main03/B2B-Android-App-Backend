@@ -12,7 +12,7 @@ const upload=require("../Middleware/ImageUpload")
 router.route('/').get(ProductController.GetAllProductList)
 // router.route('/').get(ProductController.getProduct)
 router.route('/').post(AuthenticateAdmin,upload.single("ProductImage"),ProductController.CreateNewProduct)
-router.route('/:id').put(ProductController.UpdateProduct)
+router.route('/:id').put(AuthenticateAdmin,upload.single("ProductImage"),ProductController.UpdateProduct)
 router.route('/:id').delete(ProductController.DeleteProduct)
 
 

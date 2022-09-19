@@ -24,4 +24,3 @@ const categoryschema = new mongooose.Schema(
 
 module.exports = mongooose.model("categories", categoryschema);
 
-//dates binary date for bsoon data types

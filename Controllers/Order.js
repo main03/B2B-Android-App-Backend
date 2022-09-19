@@ -13,14 +13,13 @@ exports.GetAllOrderList =
         res.status(200).json({
           Orderdata: result,
         });
-        // console.log("order posted");
+       
       })
       .catch((err) => {
         res.status(500);
       });
   });
-  // updateOne yeh phly use kr rha tha 
-  // findOneAndUpdate
+ 
 exports.UpdateOrders =
   (
   (req, res, next) => {
@@ -28,7 +27,7 @@ exports.UpdateOrders =
       { _id: req.params.id },
       {
         $set: {
-          // OrderTotal: req.body.OrderTotal,
+        
           OrderStatus: req.body.OrderStatus,
         },
       }
@@ -63,7 +62,7 @@ exports.postOrder =
     console.log("order posted");
     res.send(order);
   });
-  //helloo this is sherry
+ 
 exports.getOrder =
   (
   async (req, res, next) => {

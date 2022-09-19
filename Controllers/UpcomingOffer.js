@@ -5,7 +5,7 @@ exports.CreateUpcomingOffer =
   (
   (req, resp, next) => {
    
-    // const description=req.body.description;
+   
     const offercreate = new UpcomingOffer({
       description: req.body.description,
       AdminId: req.AdminId,
@@ -26,11 +26,11 @@ exports.CreateUpcomingOffer =
         console.log("Offers created Successfully with referencing(Admin_Id) ");
       })
       .catch((err) => {
-        // resp.status(400);
+     
         console.log("error in api ");
         console.log(err);
       });
-    //  resp.send(result);
+   
   });
 exports.getOffer = async (req, res, next) => {
   UpcomingOffer.find()

@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
   const token = authHeader.split(" ")[1];
   let decodedToken;
   try {
-    decodedToken = jwt.verify(token, "Helloiamadmin");
+    decodedToken = jwt.verify(token, process.env.SECRET_KEY);
 
    
     console.log("Admin matched Successfully");

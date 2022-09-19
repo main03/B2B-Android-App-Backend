@@ -15,5 +15,4 @@ router.route('/:id').put(AuthenticateRetailer,OrdersController.updateOrder)
 router.route('/').post(AuthenticateRetailer,OrdersController.postOrder)
 
 
-
 module.exports = router;

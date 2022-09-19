@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt");
 const Admin = require("../Models/Admin");
-// const AuthenticateAdmin = require("../Middleware/AdminAuth");
+
 
 const jwt = require("jsonwebtoken");
 
@@ -22,8 +22,8 @@ exports.AdminLogin = (async (req, res, next) => {
     console.log("JSON WEB-TOKEN OF ADMIN IS :");
     const token = await jwt.sign(
       { AdminId: loadeduser._id.toString() },
-      "Helloiamadmin",
-      { expiresIn: "24h" }
+        process.env.SECRET_KEY,
+      { expiresIn:  process.env.EXPIRY_TIME }
      
     );
     console.log("Id of admin is :",loadeduser._id.toString() );
@@ -32,7 +32,7 @@ exports.AdminLogin = (async (req, res, next) => {
 
     res.send({ token: token ,
       AdminId: loadeduser._id.toString()});
-    // res.send({token:token,name:name,password:password});
+   
   } else {
     console.log("Name NOT FOUND OR PASSWORD NOT MATCHED ");
     res.send("Not found");

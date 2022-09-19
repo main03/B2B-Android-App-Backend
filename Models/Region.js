@@ -25,4 +25,3 @@ const regionschema= new mongooose.Schema({
 module.exports=mongooose.model("regions",regionschema);
 
 
-//dates binary date for bsoon data types

@@ -14,7 +14,7 @@ exports.getRetailer =
       .then((result) => {
         res.status(200).json({
           userdata: result,
-          // Do something with the user
+       
         });
       })
       .catch((err) => {
@@ -70,7 +70,7 @@ exports.retailerLogin = async (req, res) => {
     console.log(token);
 
     res.send({ token: token, userId: loadedUser._id.toString() });
-    // res.send({token:token,name:name,password:password});
+   
   } else {
     console.log("Name NOT FOUND OR PASSWORD NOT MATCHED ");
     res.send("Not found");

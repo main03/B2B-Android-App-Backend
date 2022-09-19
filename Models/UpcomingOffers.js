@@ -15,7 +15,7 @@ const UpcomingOfferSchema= new mongooose.Schema({
       Expiry_Date:
       {
         type: String,
-        // unique:true,
+    
         required: true,
       },
       OfferImage:{
@@ -51,4 +51,3 @@ const UpcomingOfferSchema= new mongooose.Schema({
 
 module.exports=mongooose.model("UpcomingOffer",UpcomingOfferSchema);
 
-//dates binary date for bsoon data types

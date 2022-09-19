@@ -24,7 +24,7 @@ exports.CreateNewProduct =
     productcreate
       .save()
       .then((result) => {
-        // console.log(result);
+       
         res.send("Product createdd");
         console.log(
           "Product created Successfully with referencing(Admin_Id & Category Id) "
@@ -35,7 +35,7 @@ exports.CreateNewProduct =
         console.log(err);
       });
   });
-// .populate([{path:"CategoryId", select:["category_name","CategoryImage"]},{path:"AdminId",select:"name"}])
+
 exports.GetAllProductList =
   (
   async (req, res, next) => {
@@ -59,6 +59,8 @@ exports.GetAllProductList =
 exports.UpdateProduct =
   (
   (req, res, next) => {
+    if(req.file)
+    {
     Product.updateOne(
       { _id: req.params.id },
       {
@@ -67,6 +69,7 @@ exports.UpdateProduct =
           price: req.body.price,
           brand_name: req.body.brand_name,
           product_quantity: req.body.product_quantity,
+          ProductImage :req.file.path,
         },
       }
     )
@@ -78,6 +81,31 @@ exports.UpdateProduct =
           error: err,
         });
       });
+    }
+    else{
+      Product.updateOne (
+      
+       { _id: req.params.id },
+        {
+          $set: {
+            name: req.body.name,
+            price: req.body.price,
+            brand_name: req.body.brand_name,
+            product_quantity: req.body.product_quantity,
+         
+          },
+        }
+      )
+        .then((result) => {
+          res.status(200).json(result);
+        })
+        .catch((err) => {
+          res.status(500).json({
+            error: err,
+          });
+        });
+    }
+  
   });
 
 exports.DeleteProduct =

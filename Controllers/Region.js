@@ -49,7 +49,7 @@ exports.DeleteRegion =
     }
   });
 
-//region endpoint
+
 exports.PostRegion =
   (
   async (req, resp, next) => {
@@ -66,14 +66,13 @@ exports.PostRegion =
     regioncreate
       .save()
       .then((result) => {
-        // console.log(result);
         console.log("Region created Successfully with referencing ");
-        // res.redirect("/admin/products");
+       
       })
       .catch((err) => {
         console.log("Region validation faileddd");
         console.log(err);
       });
-    //  resp.send(result);
+   
   });
 
