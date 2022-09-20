@@ -19,7 +19,7 @@ exports.CreateNewCategory =
     categorycreate
       .save()
       .then((result) => {
-        resp.send("craeatedd");
+        resp.status(200);
         console.log(
           "Category created Successfully with referencing(Admin_Id) "
         );

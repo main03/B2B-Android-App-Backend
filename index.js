@@ -11,7 +11,9 @@ const retailer = require("./Routes/Retailer");
 
 const categories = require("./Routes/Categories")
 const products=require("./Routes/Product")
-const orders=require("./Routes/Orders")
+// const orders=require("./Routes/Orders")
+const AdminOrders=require("./Routes/AdminOrders/Orders")
+const RetailerOrders=require("./Routes/RetailerOrder/Order")
 const upcomingoffers=require("./Routes/Offers")
 const regions=require("./Routes/Region")
 
@@ -24,7 +26,8 @@ app.use("/uploads", express.static("uploads"));
 
 app.use('/category', categories)
 app.use('/product',products)
-app.use('/order',orders)
+app.use('/order',AdminOrders)
+app.use('/order',RetailerOrders)
 app.use('/upcomingoffers',upcomingoffers)
 app.use('/region',regions)
 app.use('/admin',admin)

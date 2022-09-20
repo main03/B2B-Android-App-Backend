@@ -25,13 +25,12 @@ exports.CreateNewProduct =
       .save()
       .then((result) => {
        
-        res.send("Product createdd");
+        resp.status(200);
         console.log(
           "Product created Successfully with referencing(Admin_Id & Category Id) "
         );
       })
       .catch((err) => {
-        res.send("Error in API Catch");
         console.log(err);
       });
   });

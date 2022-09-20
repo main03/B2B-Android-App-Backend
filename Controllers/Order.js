@@ -7,9 +7,7 @@ exports.GetAllOrderList =
    
     Order.find()
     .populate([{ path: "UserId", select: ["FirstName", "LastName"] }])
-     
-     
-      .then((result) => {
+     .then((result) => {
         res.status(200).json({
           Orderdata: result,
         });
@@ -23,13 +21,13 @@ exports.GetAllOrderList =
 exports.UpdateOrders =
   (
   (req, res, next) => {
-    Order.updateOne(
+    Order.findByIdAndUpdate(
       { _id: req.params.id },
       {
         $set: {
         
           OrderStatus: req.body.OrderStatus,
-        },
+        }
       }
     )
       .then((result) => {

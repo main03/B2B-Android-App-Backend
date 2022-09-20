@@ -22,7 +22,7 @@ exports.CreateUpcomingOffer =
     offercreate
       .save()
       .then((result) => {
-        resp.send("craeatedd");
+        resp.status(200);
         console.log("Offers created Successfully with referencing(Admin_Id) ");
       })
       .catch((err) => {
