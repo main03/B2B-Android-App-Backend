@@ -18,6 +18,7 @@ const regions=require("./Routes/Region")
 
  
 const app = express();
+app.use(cors());
 app.use((req,res,next)=>
 {
 res.setHeader('Access-Control-Allow-Origin', '*');
@@ -25,11 +26,10 @@ res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, D
 res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
 next();
 
-
 })
 const bodyparser = require("body-parser");
 app.use(bodyparser.json());
-app.use(cors());
+
 app.use("/uploads", express.static("uploads"));
 app.use('/category', categories)
 app.use('/product',products)
