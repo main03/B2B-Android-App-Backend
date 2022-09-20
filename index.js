@@ -14,9 +14,19 @@ const AdminOrders=require("./Routes/AdminOrders/Orders")
 const RetailerOrders=require("./Routes/RetailerOrder/Order")
 const upcomingoffers=require("./Routes/Offers")
 const regions=require("./Routes/Region")
+//cors problem
 
-
+ 
 const app = express();
+app.use((req,res,next)=>
+{
+res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
+res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+next();
+
+
+})
 const bodyparser = require("body-parser");
 app.use(bodyparser.json());
 app.use(cors());
