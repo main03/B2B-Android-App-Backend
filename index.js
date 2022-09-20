@@ -14,9 +14,6 @@ const AdminOrders=require("./Routes/AdminOrders/Orders")
 const RetailerOrders=require("./Routes/RetailerOrder/Order")
 const upcomingoffers=require("./Routes/Offers")
 const regions=require("./Routes/Region")
-//cors problem
-
- 
 const app = express();
 app.use(cors());
 app.use((req,res,next)=>
