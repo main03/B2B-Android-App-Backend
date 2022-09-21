@@ -10,7 +10,7 @@ module.exports = (req, res, next) => {
   let token = authHeader.split(" ")[1];
   let decodedToken;
   try {
-    decodedToken = jwt.verify(token,"SAM");
+    decodedToken = jwt.verify(token,process.env.RETAILER_SECRET_KEY);
 
     console.log("Retailer matched Successfully");
     console.log(decodedToken);

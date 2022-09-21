@@ -72,7 +72,7 @@ exports.retailerLogin = async (req, res) => {
         Phone_no: loadedUser.Phone_no,
         userId: loadedUser._id.toString(),
       },
-      key,
+      process.env.RETAILER_SECRET_KEY,
       { expiresIn:process.env.JWT_EXPIRY_TIME }
     );
     console.log(token);
