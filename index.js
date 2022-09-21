@@ -4,7 +4,7 @@ const cors = require("cors");
 const path=require('path');
 const mongooose = require("mongoose");
 mongooose.connect(
-  process.env.DATABASE_CONNECTION_URL
+  "mongodb://Sheharyar:a@ac-icn4hca-shard-00-00.mvnan7c.mongodb.net:27017,ac-icn4hca-shard-00-01.mvnan7c.mongodb.net:27017,ac-icn4hca-shard-00-02.mvnan7c.mongodb.net:27017/?ssl=true&replicaSet=atlas-zzfoll-shard-0&authSource=admin&retryWrites=true&w=majority"
 );
 const admin = require("./Routes/Admin");
 const retailer = require("./Routes/Retailer");
@@ -16,15 +16,7 @@ const upcomingoffers=require("./Routes/Offers")
 const regions=require("./Routes/Region")
 const app = express();
 app.use(cors());
-app.use((req,res,next)=>
-{
-res.setHeader('Access-Control-Allow-Origin', '*');
-res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
-res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-next();
-
-});
-// const PORT=5000;
+const port=5000;
 const bodyparser = require("body-parser");
 app.use(bodyparser.json());
 
@@ -38,9 +30,9 @@ app.use('/region',regions)
 app.use('/admin',admin)
 app.use('/retailer',retailer)
 console.log("Mongo DB Cloud Atlas Connected Successfullyy.....");
-// app.listen(process.env.PORT || process.env.BACKEND_PORT , () => console.log("Server running at PORT :"+ process.env.BACKEND_PORT));
-app.listen(process.env.PORT, () =>
-  console.log("Server running at http://localhost:" + process.env.PORT)
-);
+app.listen(process.env.PORT || port , () => console.log("Server running at PORT :"+ port));
+// app.listen(process.env.PORT, () =>
+//   console.log("Server running at http://localhost:" + process.env.PORT)
+// );
 
 
