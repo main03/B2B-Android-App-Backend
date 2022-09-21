@@ -19,6 +19,7 @@ const app = express();
 app.use(cors());
 const bodyparser = require("body-parser");
 app.use(bodyparser.json());
+
 const port=5000;
 app.use("/uploads", express.static("uploads"));
 app.use('/category', categories)
