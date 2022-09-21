@@ -21,26 +21,36 @@ exports.getRetailer =
       });
   });
 
-exports.addRetailer = async (req, res) => {
-  let loadedUser;
-  let user = new User(req.body);
-  await user.save();
-  console.log(user);
-  loadedUser = user;
-  const token = jwt.sign(
-    {
-      Phone_no: loadedUser.Phone_no,
-      userId: loadedUser._id.toString(),
-    },
-    "SAM",
-    { expiresIn: "24h" }
-  );
-  console.log(token);
-
-  res.send({ token: token, userId: loadedUser._id.toString() });
-  
-  res.send();
-};
+  exports.addRetailer = async (req, res) => {
+    let loadedUser;
+    const FirstName = req.body.FirstName;
+    const LastName = req.body.LastName;
+    const Phone_no = req.body.Phone_no;
+    const hashedpassword = req.body.password;
+    const RegionId = req.body.RegionId;
+    const hash = bcrypt.genSaltSync(10);
+    const password = bcrypt.hashSync(hashedpassword, hash);
+    let user = new User({
+      FirstName: FirstName,
+      LastName: LastName,
+      Phone_no: Phone_no,
+      password: password,
+      RegionId: RegionId,
+    });
+    await user.save();
+    loadedUser = user;
+    const token = jwt.sign(
+      {
+        Phone_no: loadedUser.Phone_no,
+        userId: loadedUser._id.toString(),
+      },
+      process.env.RETAILER_SECRET_KEY,
+      { expiresIn: process.env.RETAILER_EXPIRY_TIME }
+    );
+    console.log(token);
+    res.send({ token: token, userId: loadedUser._id.toString() });
+    res.send();
+  };
 exports.retailerLogin = async (req, res) => {
 
   const Phone_no = req.body.Phone_no;

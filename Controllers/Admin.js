@@ -2,7 +2,6 @@ const bcrypt = require("bcrypt");
 const Admin = require("../Models/Admin");
 const jwt = require("jsonwebtoken");
 exports.AdminLogin = (async (req, res, next) => {
- 
   const name = req.body.name;
   const password = req.body.password;
   const admin = await Admin.findOne({ name: name });
@@ -21,10 +20,7 @@ exports.AdminLogin = (async (req, res, next) => {
       { AdminId: loadeduser._id.toString() },
       "Helloiamadmin",
       { expiresIn: "24h" }
-      
-      
-     
-    );
+       );
     console.log("Id of admin is :",loadeduser._id.toString() );
     console.log(token);
   
