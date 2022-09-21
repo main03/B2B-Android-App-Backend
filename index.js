@@ -17,10 +17,9 @@ const upcomingoffers=require("./Routes/Offers")
 const regions=require("./Routes/Region")
 const app = express();
 app.use(cors());
-const port=5000;
 const bodyparser = require("body-parser");
 app.use(bodyparser.json());
-
+const port=5000;
 app.use("/uploads", express.static("uploads"));
 app.use('/category', categories)
 app.use('/product',AdminProduct)
@@ -33,8 +32,6 @@ app.use('/admin',admin)
 app.use('/retailer',retailer)
 console.log("Mongo DB Cloud Atlas Connected Successfullyy.....");
 app.listen(process.env.PORT || port , () => console.log("Server running at PORT :"+ port));
-// app.listen(process.env.PORT, () =>
-//   console.log("Server running at http://localhost:" + process.env.PORT)
-// );
+
 
 

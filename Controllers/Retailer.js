@@ -1,8 +1,5 @@
 const User = require("../Models/Retailer");
 const jwt = require("jsonwebtoken");
-
-
-const key = "SAM";
 var bcrypt = require("bcryptjs");
 
 exports.getRetailer =
@@ -35,17 +32,17 @@ exports.addRetailer = async (req, res) => {
       Phone_no: loadedUser.Phone_no,
       userId: loadedUser._id.toString(),
     },
-    key,
+    "SAM",
     { expiresIn: "24h" }
   );
   console.log(token);
 
   res.send({ token: token, userId: loadedUser._id.toString() });
-  // res.send({token:token,name:name,password:password});
+  
   res.send();
 };
 exports.retailerLogin = async (req, res) => {
-  console.log("hi");
+
   const Phone_no = req.body.Phone_no;
   const password = req.body.password;
   let loadedUser;
@@ -66,7 +63,7 @@ exports.retailerLogin = async (req, res) => {
         userId: loadedUser._id.toString(),
       },
       key,
-      { expiresIn: "24h" }
+      { expiresIn:process.env.JWT_EXPIRY_TIME }
     );
     console.log(token);
 
