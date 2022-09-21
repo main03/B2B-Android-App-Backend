@@ -18,8 +18,8 @@ exports.AdminLogin = (async (req, res, next) => {
     console.log("JSON WEB-TOKEN OF ADMIN IS :");
     const token = await jwt.sign(
       { AdminId: loadeduser._id.toString() },
-      process.env.ADMIN_SECRET_KEY,
-      { expiresIn: process.env.JWT_EXPIRY_TIME }
+       "Helloiamadmin",
+      { expiresIn: "24h" }
        );
     console.log("Id of admin is :",loadeduser._id.toString() );
     console.log(token);

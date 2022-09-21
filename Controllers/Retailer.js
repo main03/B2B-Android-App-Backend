@@ -44,8 +44,8 @@ exports.getRetailer =
         Phone_no: loadedUser.Phone_no,
         userId: loadedUser._id.toString(),
       },
-      process.env.RETAILER_SECRET_KEY,
-      { expiresIn: process.env.RETAILER_EXPIRY_TIME }
+      "SAM",
+      { expiresIn:"24h" }
     );
     console.log(token);
     res.send({ token: token, userId: loadedUser._id.toString() });
@@ -72,8 +72,8 @@ exports.retailerLogin = async (req, res) => {
         Phone_no: loadedUser.Phone_no,
         userId: loadedUser._id.toString(),
       },
-      process.env.RETAILER_SECRET_KEY,
-      { expiresIn:process.env.JWT_EXPIRY_TIME }
+      "SAM",
+      { expiresIn:"24h" }
     );
     console.log(token);
 
