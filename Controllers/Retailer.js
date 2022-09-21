@@ -52,6 +52,7 @@ exports.retailerLogin = async (req, res) => {
   const user = await User.findOne({ Phone_no: Phone_no });
   if (!user) {
     console.log("Phone no NOT FOUND OR PASSWORD NOT MATCHED ");
+    res.send("Not found");
     return;
   }
   loadedUser = user;
