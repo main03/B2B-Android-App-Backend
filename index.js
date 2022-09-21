@@ -9,9 +9,10 @@ mongooose.connect(
 const admin = require("./Routes/Admin");
 const retailer = require("./Routes/Retailer");
 const categories = require("./Routes/Categories")
-const products=require("./Routes/Product")
-const AdminOrders=require("./Routes/AdminOrders/Orders")
-const RetailerOrders=require("./Routes/RetailerOrder/Order")
+const AdminProduct=require("./Routes/Admin/Product")
+const RetailerProduct=require("./Routes/Retailer/Product")
+const AdminOrders=require("./Routes/Admin/Orders")
+const RetailerOrders=require("./Routes/Retailer/Order")
 const upcomingoffers=require("./Routes/Offers")
 const regions=require("./Routes/Region")
 const app = express();
@@ -22,7 +23,8 @@ app.use(bodyparser.json());
 
 app.use("/uploads", express.static("uploads"));
 app.use('/category', categories)
-app.use('/product',products)
+app.use('/product',AdminProduct)
+app.use('/products',RetailerProduct)
 app.use('/order',AdminOrders)
 app.use('/orders',RetailerOrders)
 app.use('/upcomingoffers',upcomingoffers)
