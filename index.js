@@ -1,69 +1,44 @@
 const express = require("express");
-const mongodb = require("mongodb");
+require('dotenv').config();
 const cors = require("cors");
-const path = require('path');
+const path=require('path');
 const mongooose = require("mongoose");
-mongooose.connect(
-  "add your credentials"
-);
-const bcrypt = require("bcrypt");
-const AuthenticateAdmin = require("./Middleware/Auth-Admin");
+mongooose.connect("add your credentials");
+const admin = require("./Routes/Admin");
+const retailer = require("./Routes/Retailer");
+const categories = require("./Routes/Categories")
+const AdminProduct=require("./Routes/Admin/Product")
+const RetailerProduct=require("./Routes/Retailer/Product")
+const AdminOrders=require("./Routes/Admin/Orders")
+const RetailerOrders=require("./Routes/Retailer/Order")
+const upcomingoffers=require("./Routes/Offers")
+const regions=require("./Routes/Region")
 const app = express();
-const bodyparser = require("body-parser");
-// const UpcomingOffer=require('./UpcomingOffersSchema/UpcomingOffers')
-const AdminController = require("./Controllers/Admin_Api");
-const RegionController = require("./Controllers/Region_Api");
-const CategoryController = require("./Controllers/Category_Api");
-const ProductController = require("./Controllers/Product_Api");
-const OrderController = require("./Controllers/Order_Api");
-const upload=require('./Middleware/upload')
-// const CategoryImage=require('./Middleware/CategoryImage')
-const UpcomingOfferController = require("./Controllers/UpcomingOfferApi");
-// app.use(bodyparser.urlencoded({ extended: false }));
-const jsonparser = bodyparser.json();
-app.use(bodyparser.json());
 app.use(cors());
+const bodyparser = require("body-parser");
+app.use(bodyparser.json());
+app.use((req,res,next)=>
+{
+res.setHeader('Access-Control-Allow-Origin', '*');
+res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
+res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+next();
 
-const jwt = require("jsonwebtoken");
-const multer = require("multer");
+});
 
-// app.use(express.static('public')); 
-app.use('/uploads', express.static('uploads'));
-
-const UpcomingOffer = require("./UpcomingOffersSchema/UpcomingOffers");
-//Admin Route
-app.post("/AdminAuthenticate", AdminController.AdminVerify);
-//Region Routes
-app.get("/region", AuthenticateAdmin, RegionController.GetallRegionList);
-app.post("/region", AuthenticateAdmin, RegionController.PostRegion);
-app.put("/region/:id", AuthenticateAdmin, RegionController.UpdateRegion);
-app.delete("/region/:id",AuthenticateAdmin, RegionController.DeleteRegion);
-//Category Routes
-app.get("/category", AuthenticateAdmin, CategoryController.GetallCategoryList);
-app.post("/category", AuthenticateAdmin,upload.single('CategoryImage'),CategoryController.CreateNewCategory);
-app.put("/category/:id", AuthenticateAdmin, CategoryController.UpdateCategory);
-app.delete("/category/:id",AuthenticateAdmin,CategoryController.DeleteCategory);
-//Product Routes
-app.get("/product", AuthenticateAdmin, ProductController.GetAllProductList);
-app.post("/product", AuthenticateAdmin,upload.single('ProductImage'), ProductController.CreateNewProduct);
-app.put("/product/:id", AuthenticateAdmin, ProductController.UpdateProduct);
-app.delete("/product/:id", AuthenticateAdmin, ProductController.DeleteProduct);
-//Order's Routes
-app.get("/order", AuthenticateAdmin, OrderController.GetAllOrderList);
-app.put("/order/:id", AuthenticateAdmin, OrderController.UpdateOrders);
-//upcomingoffers routes
-//phly authenticate admin ad ho ga phir upload.single wala code aye ga
-// upload.single('OfferImage') add this after authenticate admin
-app.post("/upcomingoffers",AuthenticateAdmin,upload.single('OfferImage'),UpcomingOfferController.CreateUpcomingOffer);
-
-//cors problem
-// res.setHeader('Access-Control-Allow-Origin', '*');
-// res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
-// res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-// next();
-//multer storage
+const port=5000;
+app.use("/uploads", express.static("uploads"));
+app.use('/category', categories)
+app.use('/product',AdminProduct)
+app.use('/products',RetailerProduct)
+app.use('/order',AdminOrders)
+app.use('/orders',RetailerOrders)
+app.use('/upcomingoffers',upcomingoffers)
+app.use('/region',regions)
+app.use('/admin',admin)
+app.use('/retailer',retailer)
+console.log("Mongo DB Cloud Atlas Connected Successfullyy.....");
+app.listen(process.env.PORT || port , () => console.log("Server running at PORT :"+ port));
 
 
 
-
-app.listen(5000);
