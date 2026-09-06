@@ -3,9 +3,7 @@ require('dotenv').config();
 const cors = require("cors");
 const path=require('path');
 const mongooose = require("mongoose");
-mongooose.connect(
-  "mongodb://Sheharyar:a@ac-icn4hca-shard-00-00.mvnan7c.mongodb.net:27017,ac-icn4hca-shard-00-01.mvnan7c.mongodb.net:27017,ac-icn4hca-shard-00-02.mvnan7c.mongodb.net:27017/?ssl=true&replicaSet=atlas-zzfoll-shard-0&authSource=admin&retryWrites=true&w=majority" 
-);
+mongooose.connect("add your credentials");
 const admin = require("./Routes/Admin");
 const retailer = require("./Routes/Retailer");
 const categories = require("./Routes/Categories")
